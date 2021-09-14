@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
-<h1>All Blog Posts...</h1>
+<h1 style="font-weight: bold; color:dodgerblue;">Find all blog posts here...</h1>
 <hr/>
     <div class="album py-5">
     <div class="container">
-        <div class="row">
+        <div class="cloumn">
         {% for post in object_list %}
-        <div class="col-md-4" >
-            <div class="card mb-3 box-shadow">
-              <div class="card-body" style="text-align: center; background-color:blanchedalmond;">
-                <h5 class="card-text"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }}</small>
-                <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a>
-                <a href="{% url 'delete-post' post.pk %}"><small>(Delete Post)</small></a>
+        <div class="col-md-center" >
+            <div class="card mb-2 box-shadow">
+              <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
+                <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
+                <p class="card-text"><i>{{ post.body|slice:":151"|safe }}</i></p>
+                <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a></small>
+                
+                {% if user.is_authenticated %}
+                  <p>
+                  <strong>
+                    <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
+                    <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
+                  </strong>
+                  </p>
+                {% endif %}
               </div>
             </div>
             </a>

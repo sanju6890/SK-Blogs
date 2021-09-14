@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <title>
         {% block title %}
             Sanjay Kumar's Blogs
@@ -23,24 +24,59 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'add-post' %}">Add Post</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'add-category' %}">Add Category</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'add-post' %}">Add New Post</a>
-              </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" href="{% url 'register' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'login' %}">Sign In</a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
       </nav>
       
-    <div class="container">
+    <div class="jumbotron text-left">
         {% block content %}
 
         {% endblock %}
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    
+    <footer class="text-muted py-2 bg-dark" style="text-align: center;">
+      <div class="container">
+        <p class="float-end mb-0">
+          <a href="#">Back to top</a>
+        </p>
+        <ul class="nav justify-content-center border-bottom pb-2 mb-1" style="font-weight: bold;">
+          <li class="nav-item"><a href="https://www.linkedin.com/in/sanjaykumar086/" class="nav-link px-2 text-muted">LinkedIn</a></li>
+          <li class="nav-item"><a href="https://twitter.com/Sanjay6890/" class="nav-link px-2 text-muted">Twitter</a></li>
+          <li class="nav-item"><a href="https://github.com/sanju6890/" class="nav-link px-2 text-muted">GitHub</a></li>
+          <li class="nav-item"><a href="https://www.facebook.com/saikapiansanjay/" class="nav-link px-2 text-muted">Facebook</a></li>
+          <li class="nav-item"><a href="https://www.instagram.com/saikapian.sanjay/" class="nav-link px-2 text-muted">Instagram</a></li>        
+        </ul>
+        <p class="mb-0">Contact Me: <a href="mailto:itworld.6890@gmail.com">itworld.6890@gmail.com</a></p>
+        <p class="mb-0"><strong>SANJAY KUMAR &copy; 2021</strong></p>
+      </div>
+  </footer>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script> 
 </body>
 </html>

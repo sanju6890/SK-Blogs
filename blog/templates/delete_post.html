@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
     <h1>Delete: {{ post.title }}</h1>
     <hr/>
     <div class="form-group">
@@ -15,5 +17,10 @@
         <button class="btn btn-danger">Delete</button>
     </form>
     </div>
-    
+{% else %}
+    <h1>Sorry :(</h1>
+    <hr/>
+    <h5>You're not allowed to delete any blog post!</h5>
+{% endif %}
+
 {% endblock %}

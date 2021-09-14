@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    SK Blogs: {{ cats }}
+{% endblock %}
+
+{% block content %}
+{% if category_posts %}
+    <h1 style="font-weight: bold; color:dodgerblue;">{{ cats }} blog posts...</h1>
+    <hr/>
+        <div class="album py-5">
+        <div class="container">
+            <div class="cloumn">
+            {% for post in category_posts %}
+            <div class="col-md-center" >
+                <div class="card mb-2 box-shadow">
+                <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
+                    <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
+                    <p class="card-text"><i>{{ post.body|slice:":151"|safe }}</i></p>
+                    <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} on {{ post.post_date }}</small>
+                    
+                    {% if user.is_authenticated %}
+                    <p>
+                    <strong>
+                        <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
+                        <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
+                    </strong>
+                    </p>
+                    {% endif %}
+                </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% else %}
+    <h1>Sorry :(</h1>
+    <hr/>
+    <h5>{{ cats }} category doesn't exist!!</h5>
+{% endif %}
+
+{% endblock %}

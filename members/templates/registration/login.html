@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+SK Blogs: Login Page
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="form-group text-center">
+    <h1>Login Here!!</h1><br/>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Login</button>
+</form>
+</div>
+{% endblock %}
