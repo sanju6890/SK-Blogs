@@ -7,11 +7,27 @@
     <h1>{{ post.title }}</h1>
     <small>By- {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a>
         {% if user.is_authenticated %}
-            <a href="{% url 'update-post' post.pk %}">Edit Post</a></small> | 
-            <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
+            {% if user.id == post.author.id %}
+                <a href="{% url 'update-post' post.pk %}">Edit Post</a></small> | 
+                <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
+            {% endif %}
         {% endif %}            
     <hr>
     {{ post.body|safe }}
     <hr>
     <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+
+    {% if user.is_authenticated %}
+        <br/><br/><hr/>
+        <form action="{% url 'like-post' post.pk %}" method="POST">
+            {% csrf_token %}
+            {% if liked %}
+                <button type="submit" name="post_id" value= "{{ post.id }}" class="btn btn-danger btn-sm">Unlike👎</button>
+            {% else %}
+                <button type="submit" name="post_id" value= "{{ post.id }}" class="btn btn-success btn-sm">Like👍</button>
+            {% endif %}
+            - {{ total_likes }} Likes
+        </form>
+    {% endif %}
+
 {% endblock %}

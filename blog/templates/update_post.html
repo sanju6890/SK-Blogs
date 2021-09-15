@@ -6,20 +6,26 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>Edit this blog post here...</h1>
-    <hr/>
-    <div class="form-group">
-        <form method="POST">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <button class="btn btn-primary">Update</button>
-    </form>
-    </div>
+    {% if user.id == post.author.id %}
+        <h1>Edit this blog post here...</h1>
+        <hr/>
+        <div class="form-group">
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Update</button>
+        </form>
+        </div>
+    {% else %}
+        <h1>Sorry :(</h1>
+        <hr/>
+        <h5>You're not allowed to edit/update this blog post!</h5>
+    {% endif %}
 {% else %}
     <h1>Sorry :(</h1>
     <hr/>
-    <h5>You're not allowed to edit/update any blog post!</h5>
+    <h5>You're not logged in to edit/update any blog post!</h5>
 {% endif %}
 
 {% endblock %}

@@ -4,22 +4,24 @@
 <hr/>
     <div class="album py-5">
     <div class="container">
-        <div class="cloumn">
+        <div class="column">
         {% for post in object_list %}
         <div class="col-md-center" >
             <div class="card mb-2 box-shadow">
               <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
                 <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                <p class="card-text"><i>{{ post.body|slice:":151"|safe }}</i></p>
+                <p>{{ post.body|slice:":151"|safe }}</p>
                 <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a></small>
                 
                 {% if user.is_authenticated %}
-                  <p>
-                  <strong>
-                    <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
-                    <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
-                  </strong>
-                  </p>
+                  {% if user.id == post.author.id %}
+                    <p>
+                      <strong>
+                        <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
+                        <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
+                      </strong>
+                    </p>
+                  {% endif %}
                 {% endif %}
               </div>
             </div>

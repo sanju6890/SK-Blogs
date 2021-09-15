@@ -4,10 +4,10 @@ SK Blogs: Login Page
 {% endblock %}
 
 {% block content %}
-<br>
 
-<div class="form-group text-center">
-    <h1>Login Here!!</h1><br/>
+<div class="form-group">
+    <h1>Login Here!!</h1>
+    <hr/>
     <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blog Categories
+{% endblock %}
+
+{% block content %}
+<h1 style="font-weight: bold; color:dodgerblue;">Find all blog categories here...</h1>
+<hr/>
+    <div class="album py-5">
+    <div class="container">
+        <div class="row">
+        {% for category in category_list %}
+        <div class="col-md-4" >
+            <div class="card mb-3 box-shadow">
+              <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
+                <h5 class="card-text" style="text-align: center;"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

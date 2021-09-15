@@ -22,9 +22,13 @@ class Post(models.Model):
     category = models.CharField(max_length=255)
     # body = models.TextField()
     body = RichTextField(blank=True, null=True)
+    likes = models.ManyToManyField(User, related_name="blog_posts")
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
+    
+    def total_likes(self):
+        return self.likes.count()
     
     def get_absolute_url(self):
         # return reverse('article-view', args=(str(self.id)))
