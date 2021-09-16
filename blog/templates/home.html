@@ -10,7 +10,9 @@
             <div class="card mb-2 box-shadow">
               <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
                 <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                <p>{{ post.body|slice:":151"|safe }}</p>
+                <!-- <p>{{ post.body|slice:":151"|safe }}</p> -->
+                {{ post.snippet }}
+                <br/>
                 <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a></small>
                 
                 {% if user.is_authenticated %}
