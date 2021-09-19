@@ -8,7 +8,7 @@ from blog.models import Profile
 class ProfilePageForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'profile_pic', 'website_url', 'linkedin_url', 'twitter_url', 'instagram_url', 'facebook_url')
+        fields = ('bio', 'website_url', 'linkedin_url', 'twitter_url', 'instagram_url', 'facebook_url')
         widgets = {
             'bio': forms.Textarea(attrs={'class':'form-control','placeholder':'Write a short bio for your profile...'}),
             #'profile_pic': forms.TextInput(attrs={'class':'form-control'}),
@@ -22,9 +22,9 @@ class ProfilePageForm(forms.ModelForm):
 class EditProfilePageForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'profile_pic', 'website_url', 'linkedin_url', 'twitter_url', 'instagram_url', 'facebook_url')
+        fields = ('bio', 'website_url', 'linkedin_url', 'twitter_url', 'instagram_url', 'facebook_url')
         widgets = {
-            #'profile_pic': forms.TextInput(attrs={'class':'form-control'}),
+            # 'profile_pic': forms.ImageField(attrs={'class':'form-control'}),
             'bio': forms.Textarea(attrs={'class':'form-control','placeholder':'Write a short bio for your profile...'}),
             'website_url': forms.URLInput(attrs={'class':'form-control'}),
             'linkedin_url': forms.URLInput(attrs={'class':'form-control'}),
