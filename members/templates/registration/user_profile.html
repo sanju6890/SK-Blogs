@@ -13,7 +13,7 @@ SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
             {% if page_user.profile_pic %}
                 <img src="{{ page_user.profile_pic.url }}" class="card-img" alt="Profile Pic">
             {% else %}
-                <img src="{% static 'default_profile_pic.png' %}" class="card-img" alt="Profile Pic">
+                <img src="{% static 'profile_pic.png' %}" class="card-img" alt="Profile Pic">
             {% endif %}
           </div>            
           <div class="col-md-8">
