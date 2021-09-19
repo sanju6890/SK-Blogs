@@ -60,4 +60,4 @@ class ChangePasswordForm(PasswordChangeForm):
     new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control','type':'password'}))
     new_password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control','type':'password'}))
     class Meta:
-        fields = ('', 'old_password', 'new_password1', 'new_password2')
+        fields = ('old_password', 'new_password1', 'new_password2')
