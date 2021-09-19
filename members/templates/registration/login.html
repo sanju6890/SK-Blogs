@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}
-SK Blogs: Login Page
+SK BLOGS: Login Page
 {% endblock %}
 
 {% block content %}
 
 <div class="form-group">
-    <h1>Login Here!!</h1>
+    <h1 style="text-align: center;">Login Here!!</h1>
     <hr/>
     <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+    <small>Not a registered user? First <a href="{% url 'register' %}"><b>Sign Up</b></a></small>
+    <br/><br/>
     <button class="btn btn-primary">Login</button>
 </form>
 </div>

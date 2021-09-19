@@ -35,3 +35,12 @@ class EditForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class':'form-control','placeholder':'Write the blog here...'}),
             'snippet': forms.Textarea(attrs={'class':'form-control','placeholder':'Write a snippet for the blog here...'})
         }
+
+class AddCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control','placeholder':'Write a category name...'}),
+        }

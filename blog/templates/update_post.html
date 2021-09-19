@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-    Edit Blog Post
+    SK BLOGS: Edit Blog Post
 {% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h1>Edit this blog post here...</h1>
+        <h2 style="text-align: center;">Edit This Blog Post Here!!</h2>
         <hr/>
         <div class="form-group">
             <form method="POST">

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    SK BLOGS: Create Profile Page
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h2 style="text-align: center;">Create Your Profile Page Here!!</h2>
+    <hr/>
+    <div class="form-group">
+        <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Create Profile</button>
+    </form>
+    </div>
+{% else %}
+    <h1>Sorry :(</h1>
+    <hr/>
+    <h5>You're not allowed to add a new blog post!</h5>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
+{% endblock %}
+{% block content %}
+<h2 style="font-weight: bold; color:dodgerblue;">{{ page_user.user.first_name }} {{ page_user.user.last_name }}'s Profile...</h2>
+<hr/>
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            {% if page_user.profile_pic %}
+                <img src="{{ page_user.profile_pic.url }}" class="card-img" alt="Profile Pic">
+            {% else %}
+                <img src="{% static 'default_profile_pic.png' %}" class="card-img" alt="Profile Pic">
+            {% endif %}
+          </div>            
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h5>
+              <p class="small text-muted">
+                  
+                  {% if page_user.website_url %}
+                    <a href="{{ page_user.website_url }}">Website</a> |
+                  {% endif %}
+                  {% if page_user.linkedin_url %}
+                    <a href="{{ page_user.linkedin_url }}">LinkedIn</a> |
+                  {% endif %}
+                  {% if page_user.twitter_url %}
+                    <a href="{{ page_user.twitter_url }}">Twitter</a> |
+                  {% endif %}
+                  {% if page_user.facebook_url %}
+                    <a href="{{ page_user.facebook_url }}">Facebook</a> |
+                  {% endif %}
+                  {% if page_user.instagram_url %}
+                    <a href="{{ page_user.instagram_url }}">Instagram</a> |
+                  {% endif %}                    
+                   
+                </p>
+              <p class="card-text">{{ page_user.bio }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

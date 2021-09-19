@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    SK BLOGS: Edit Profile Post
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+        <h2 style="text-align: center;">Edit Profile Page!!</h2>
+        <hr/>
+        <div class="form-group">
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Edit Profile Page</button>
+        </form>
+        </div>
+    {% else %}
+        <h1>Sorry :(</h1>
+        <hr/>
+        <h5>You're not allowed to edit others's profile!</h5>
+    {% endif %}
+{% else %}
+    <h1>Sorry :(</h1>
+    <hr/>
+    <h5>You're not allowed to add a new blog post!</h5>
+{% endif %}
+
+
+{% endblock %}

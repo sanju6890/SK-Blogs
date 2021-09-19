@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}
-    Add New Blog Post
+    SK BLOGS: Add New Blog Post
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>Add a new blog post here...</h1>
+    <h2 style="text-align: center;">Add New Blog Post Here!!</h2>
     <hr/>
     <div class="form-group">
         <form method="POST">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <button class="btn btn-primary">Post</button>
+        <button class="btn btn-primary">Submit</button>
     </form>
     </div>
     <script>
