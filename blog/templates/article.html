@@ -18,13 +18,11 @@
                 <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
             {% endif %}
         {% endif %}            
-    <hr>
+    <hr/>
     {{ post.body|safe }}
-    <hr>
-    <a href="{% url 'home' %}" class="btn btn-primary btn-sm">Back</a>
 
     {% if user.is_authenticated %}
-        <br/><br/><hr/>
+        <hr/>
         <form action="{% url 'like-post' post.pk %}" method="POST">
             {% csrf_token %}
             {% if liked %}
@@ -33,6 +31,22 @@
                 <button type="submit" name="post_id" value= "{{ post.id }}" class="btn btn-success btn-sm">Like👍</button>
             {% endif %}
             - {{ total_likes }} Likes
-        </form>        
+        </form>
     {% endif %}
+    <br/>   
+    <h3>Comments...</h3>
+    <hr/>   
+    {% if not post.comments.all %}
+        <h5>No Comments Till Now!!</h5>
+    {% else %}
+        {% for comment in post.comments.all %}
+        <strong>{{ comment.name }} <small>- {{ comment.date_added }}</small></strong>
+        <br/>
+        {{ comment.body }}
+        <br/>
+        {% endfor %}
+        
+    {% endif %}
+    <hr/>
+    <a href="{% url 'add-comment' post.pk %}"><button class="btn btn-primary btn-sm">Add Comment</button></a>
 {% endblock %}
