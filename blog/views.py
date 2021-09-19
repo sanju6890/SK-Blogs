@@ -26,7 +26,8 @@ def LikeView(request, pk):
     return HttpResponseRedirect(reverse('article-view', args=[str(pk)]))
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats.title().replace('-', ' '))
+    category_list = Category.objects.get(name = cats.title().replace('-', ' '))
+    category_posts = Post.objects.filter(category = category_list)
     return render(request, 'category.html', {'cats':cats.title().replace('-', ' '),'category_posts':category_posts})
 
 # Class Based Views

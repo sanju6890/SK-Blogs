@@ -16,7 +16,7 @@
                 <div class="card mb-2 box-shadow">
                 <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
                     <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                    <p class="card-text"><i>{{ post.body|slice:":151"|safe }}</i></p>
+                    <p class="card-text"><i>{{ post.snippet }}</i></p>
                     <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} on {{ post.post_date }}</small>
                     
                     {% if user.is_authenticated %}
