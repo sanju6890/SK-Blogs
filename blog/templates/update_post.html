@@ -14,18 +14,22 @@
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
-            <button class="btn btn-primary">Update</button>
+            <button class="btn btn-primary">Update Post</button>
         </form>
         </div>
     {% else %}
+        <br/><br/><br/>
         <h1>Sorry :(</h1>
         <hr/>
         <h5>You're not allowed to edit/update this blog post!</h5>
+        <br/><br/><br/>
     {% endif %}
 {% else %}
+    <br/><br/><br/>
     <h1>Sorry :(</h1>
     <hr/>
-    <h5>You're not logged in to edit/update any blog post!</h5>
+    <h5>You're not logged-in to edit/update any blog post!</h5>
+    <br/><br/><br/>
 {% endif %}
 
 {% endblock %}

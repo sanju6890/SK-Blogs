@@ -1,36 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 style="font-weight: bold; color:dodgerblue; text-align: center;">Find All Blog Posts Here!!</h2>
+<h2 style="font-weight: bold; text-align: center;">Find All Blog Posts Here!!</h2>
 <hr/>
-    <div class="album py-5">
+<div class="album py-5">
     <div class="container">
-        <div class="column">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for post in object_list %}
-        <div class="col-md-center" >
-            <div class="card mb-2 box-shadow">
-              <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
-                <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                <!-- <p>{{ post.body|slice:":151"|safe }}</p> -->
-                {{ post.snippet }}
-                <br/>
-                <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a></small>
-                
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body" style="background:lightblue;">
+              <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}"><strong>{{ post.title }}</strong></a></h5>
+              <small class="text-muted">Category: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></small>
+              <p class="card-text">{{ post.snippet }}</p>
+              <small class="card-text"><strong class="text-muted">Author: </strong>{{ post.author.first_name }} {{ post.author.last_name }}</small>
+              <div class="d-flex justify-content-between align-items-center">
                 {% if user.is_authenticated %}
-                  {% if user.id == post.author.id %}
-                    <p>
-                      <strong>
-                        <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
-                        <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
-                      </strong>
-                    </p>
+                  {% if user.id == post.author.id %}    
+                <div class="btn-group">
+                  <br/>
+                  <a href="{% url 'update-post' post.pk %}"><button type="button" class="btn btn-sm btn-primary">Edit</button></a>&ThickSpace;
+                  <a href="{% url 'delete-post' post.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                </div>
                   {% endif %}
-                {% endif %}
+                {% endif %}                
+                <small>{{ post.post_date }}</small>
               </div>
             </div>
-            </a>
           </div>
-        {% endfor %}
+        </div>  
+        {% endfor %}      
+      </div>
     </div>
-</div>
-</div>
+  </div>
 {% endblock %}

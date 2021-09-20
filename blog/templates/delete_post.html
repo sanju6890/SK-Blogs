@@ -14,19 +14,24 @@
             {% csrf_token %}
             {{ form.as_p }}
             <strong>Are you sure, you want to delete this blog post?</strong>
-            <br/>
+            <br/><hr/>
             <button class="btn btn-danger">Delete</button>
         </form>
         </div>
+        <br/><br/><br/>
     {% else %}
+        <br/><br/><br/>
         <h1>Sorry :(</h1>
         <hr/>
         <h5>You're not allowed to delete this blog post!</h5>
+        <br/><br/><br/>
     {% endif %}
 {% else %}
+    <br/><br/><br/>
     <h1>Sorry :(</h1>
     <hr/>
     <h5>You're not logged-in to delete any blog post!</h5>
+    <br/><br/><br/>
 {% endif %}
 
 {% endblock %}

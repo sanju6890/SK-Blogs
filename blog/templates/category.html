@@ -6,39 +6,43 @@
 
 {% block content %}
 {% if category_posts %}
-    <h1 style="font-weight: bold; color:dodgerblue; text-align: center;">{{ cats }} Blog Posts!!</h1>
-    <hr/>
-        <div class="album py-5">
-        <div class="container">
-            <div class="cloumn">
+<h2 style="font-weight: bold; text-align: center;">{{ cats }} Blog Posts!!</h2>
+<hr/>
+<div class="album py-5">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for post in category_posts %}
-            <div class="col-md-center" >
-                <div class="card mb-2 box-shadow">
-                <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
-                    <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
-                    <p class="card-text"><i>{{ post.snippet }}</i></p>
-                    <small class="card-text">By- {{ post.author.first_name }} {{ post.author.last_name }} on {{ post.post_date }}</small>
-                    
-                    {% if user.is_authenticated %}
-                    <p>
-                    <strong>
-                        <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a> | 
-                        <a href="{% url 'delete-post' post.pk %}"><small>Delete Post</small></a>
-                    </strong>
-                    </p>
-                    {% endif %}
-                </div>
-                </div>
-                </a>
-            </div>
-            {% endfor %}
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="card-body" style="background:lightblue;">
+                      <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
+                      <p class="card-text">{{ post.snippet }}</p>
+                      <small class="card-text"><strong>Author: </strong>{{ post.author.first_name }} {{ post.author.last_name }}</small>
+                      <div class="d-flex justify-content-between align-items-center">
+                        {% if user.is_authenticated %}
+                          {% if user.id == post.author.id %}    
+                        <div class="btn-group">
+                          <br/>
+                          <a href="{% url 'update-post' post.pk %}"><button type="button" class="btn btn-sm btn-primary">Edit</button></a>&ThickSpace;
+                          <a href="{% url 'delete-post' post.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                        </div>
+                          {% endif %}
+                        {% endif %}                
+                        <small>{{ post.post_date }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+            {% endfor %} 
         </div>
     </div>
-    </div>
+</div>
 {% else %}
+    <br/><br/><br/>
     <h1>Sorry :(</h1>
     <hr/>
     <h5>{{ cats }} category doesn't exist!!</h5>
+    <br/><br/><br/>
 {% endif %}
 
 {% endblock %}

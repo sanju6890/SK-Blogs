@@ -5,21 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<h1 style="font-weight: bold; color:dodgerblue; text-align: center;">Find All Blog Categories Here!!</h1>
+<h2 style="font-weight: bold; text-align: center;">Find All Blog Categories Here!!</h2>
 <hr/>
-    <div class="album py-5">
-    <div class="container">
-        <div class="row">
-        {% for category in category_list %}
-        <div class="col-md-4" >
-            <div class="card mb-3 box-shadow">
-              <div class="card-body" style="text-align: left; background-color:blanchedalmond;">
-                <h5 class="card-text" style="text-align: center;"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
-              </div>
-            </div>
+<div class="album py-5">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for category in category_list %}
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body" style="background:lightblue;">
+            <h5 class="card-text" style="text-align: center;"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
+          </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}  
     </div>
+  </div>
 </div>
-</div>
+<hr/>
 {% endblock %}
