@@ -5,19 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<h2 style="font-weight: bold; text-align: center;">Find All Blog Categories Here!!</h2>
+<h1 class="fw-light mt-5 text-center">Find All Blog Categories Here!!</h1>
 <hr/>
 <div class="album py-5">
   <div class="container">
       {% for category in category_list %}
-      <div class="col">
+      <div class="col mt-2">
         <div class="card shadow-sm">
           <div class="card-body" style="background:lightblue;">
-            <h5 class="card-text" style="text-align: center;"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
+            <h5 class="card-text text-center"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
           </div>
         </div>
       </div>
-      <br/>
       {% endfor %}  
   </div>
 </div>

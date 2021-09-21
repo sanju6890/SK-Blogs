@@ -5,7 +5,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h2 style="text-align: center;">Add New Blog Post Here!!</h2>
+    <h1 class="fw-light mt-5 text-center">Add New Blog Post Here!!</h1>
     <hr/>
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">
@@ -20,12 +20,9 @@
         document.getElementById("user_id").value = user_id;
     </script> -->
 {% else %}
-    <br/><br/><br/>
-    <h1>Sorry :(</h1>
+    <h1 class="fw-light mt-5">Sorry :(</h1>
     <hr/>
     <h5>You're not allowed to add a new blog post!</h5>
-    <br/><br/><br/>
 {% endif %}
-
 
 {% endblock %}

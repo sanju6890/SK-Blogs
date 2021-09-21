@@ -6,7 +6,7 @@ SK BLOGS: Login Page
 {% block content %}
 
 <div class="form-group">
-    <h1 style="text-align: center;">Login Here!!</h1>
+    <h1 class="fw-light mt-5 text-center">Please Login Here!!</h1>
     <hr/>
     <form method="POST">
     {% csrf_token %}
@@ -18,9 +18,8 @@ SK BLOGS: Login Page
         <label class="form-label">Password</label>
         <input type="password" class="form-control" name="password">
       </div>
-    <small>Not a registered user? First <a href="{% url 'register' %}"><b>Sign Up</b></a></small>
-    <br/><br/>
-    <button class="btn btn-primary">Login</button>
+    <h6>Not a registered user? First <a href="{% url 'register' %}"><b>Sign Up</b></a></h6>
+    <button class="btn btn-primary mt-2">Login</button>
 </form>
 </div>
 {% endblock %}

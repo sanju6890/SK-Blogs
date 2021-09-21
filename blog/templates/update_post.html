@@ -7,7 +7,7 @@
 
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h2 style="text-align: center;">Edit This Blog Post Here!!</h2>
+        <h1 class="fw-light mt-5 text-center">Edit This Blog Post Here!!</h1>
         <hr/>
         <div class="form-group">
             <form method="POST">
@@ -18,18 +18,14 @@
         </form>
         </div>
     {% else %}
-        <br/><br/><br/>
-        <h1>Sorry :(</h1>
+        <h1 class="fw-light mt-5">Sorry :(</h1>
         <hr/>
-        <h5>You're not allowed to edit/update this blog post!</h5>
-        <br/><br/><br/>
+        <h5>You're not allowed to edit or update this blog post!</h5>
     {% endif %}
 {% else %}
-    <br/><br/><br/>
-    <h1>Sorry :(</h1>
+    <h1 class="fw-light mt-5">Sorry :(</h1>
     <hr/>
-    <h5>You're not logged-in to edit/update any blog post!</h5>
-    <br/><br/><br/>
+    <h5>You're not logged-in to edit or update any blog post!</h5>
 {% endif %}
 
 {% endblock %}

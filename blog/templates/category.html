@@ -6,15 +6,15 @@
 
 {% block content %}
 {% if category_posts %}
-<h2 style="font-weight: bold; text-align: center;">{{ cats }} Blog Posts!!</h2>
+<h1 class="fw-light mt-5 text-center">{{ cats }} Blog Posts!!</h1>
 <hr/>
 <div class="album py-5">
     <div class="container">
             {% for post in category_posts %}
-                <div class="col">
+                <div class="col mt-2">
                   <div class="card shadow-sm">
                     <div class="card-body" style="background:lightblue;">
-                      <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
+                      <h5 class="card-text text-center"><a href="{% url 'article-view' post.pk %}">{{ post.title }}</a></h5>
                       <p class="card-text">{{ post.snippet }}</p>
                       <small class="card-text"><strong>Author: </strong>{{ post.author.first_name }} {{ post.author.last_name }}</small>
                       <div class="d-flex justify-content-between align-items-center">
@@ -31,17 +31,14 @@
                       </div>
                     </div>
                   </div>
-                </div> 
-                <br/> 
+                </div>
             {% endfor %} 
     </div>
 </div>
 {% else %}
-    <br/><br/><br/>
-    <h1>Sorry :(</h1>
+    <h1 class="fw-light mt-5">Sorry :(</h1>
     <hr/>
-    <h5>{{ cats }} category doesn't exist!!</h5>
-    <br/><br/><br/>
+    <h5>No blogs exist in {{ cats }} category!!</h5>
 {% endif %}
 
 {% endblock %}

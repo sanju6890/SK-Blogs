@@ -5,22 +5,19 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h2 style="text-align: center;">Create Your Profile Page Here!!</h2>
+    <h1 class="fw-light mt-5 text-center">Create Your Profile Page Here!!</h1>
     <hr/>
     <div class="form-group">
         <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary">Create Profile</button>
+        <button class="btn btn-primary">Add Profile</button>
     </form>
     </div>
 {% else %}
-    <br/><br/><br/>
-    <h1>Sorry :(</h1>
+    <h1 class="fw-light mt-5">Sorry :(</h1>
     <hr/>
-    <h5>You're not allowed to add a new blog post!</h5>
-    <br/><br/><br/>
+    <h5>You're not logged-in to create a profile page!</h5>
 {% endif %}
-
 
 {% endblock %}

@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    <small>By- 
+    <h1 class="fw-light mt-5">{{ post.title }}</h1>
+    <small>Author: 
       {% if post.author.profile.id %}
         <a href="{% url 'show-profile-page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a> - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a>
       {% else %}
@@ -33,11 +33,10 @@
             - {{ total_likes }} Likes
         </form>
     {% endif %}
-    <br/>   
-    <h3>Comments...</h3>
+    <h3 class="fw-light mt-2">Comments...</h3>
     <hr/>   
     {% if not post.comments.all %}
-        <h5>No Comments Till Now!!</h5>
+        <h6>No Comments Till Now!!</h6>
     {% else %}
         {% for comment in post.comments.all %}
         <strong>{{ comment.name }} <small>- {{ comment.date_added }}</small></strong>
