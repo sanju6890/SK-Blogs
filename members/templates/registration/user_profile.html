@@ -5,31 +5,69 @@
 SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
 {% endblock %}
 {% block content %}
-<h1 class="fw-light mt-5 text-center">{{ page_user.user.first_name }} {{ page_user.user.last_name }}'s Profile</h1>
-<hr/>
+
+<div class="col card mb-3 mt-5 shadow-sm">
   {% if page_user.profile_pic %}
-    <img src="{{ page_user.profile_pic.url }}" style=" border: 2px solid grey;border-radius:4px;display:block;width:25%;margin-left:auto;margin-right:auto;margin-top: 10px;" alt="Profile Pic">
-  {% else %}
-    <img src="{% static 'profile_pic.png' %}" style=" border: 2px solid grey;border-radius:4px;display:block;width:25%;margin-left:auto;margin-right:auto;margin-top: 10px;" alt="Profile Pic">
+      <img src="{{ page_user.profile_pic.url }}" class="card-img-top mt-2 bg-light" style=" border: 5px double teal;border-radius:50%; width:11%;margin-left:21px" alt="Profile Pic">
+    {% else %}
+      <img src="{% static 'profile_pic.png' %}" class="card-img-top mt-2 bg-light" style=" border: 5px double teal;border-radius:50%; width:11%;margin-left:21px" alt="Profile Pic">
   {% endif %}
-<br/>
-<p class="text-center" style="font-weight: bold;">
-  {% if page_user.website_url %}
-  <a href="{{ page_user.website_url }}">Website</a> &ThickSpace;
-  {% endif %}
-  {% if page_user.linkedin_url %}
-    <a href="{{ page_user.linkedin_url }}">LinkedIn</a> &ThickSpace;
-  {% endif %}
-  {% if page_user.twitter_url %}
-    <a href="{{ page_user.twitter_url }}">Twitter</a> &ThickSpace;
-  {% endif %}
-  {% if page_user.facebook_url %}
-    <a href="{{ page_user.facebook_url }}">Facebook</a> &ThickSpace;
-  {% endif %}
-  {% if page_user.instagram_url %}
-    <a href="{{ page_user.instagram_url }}">Instagram</a> &ThickSpace;
-  {% endif %} 
-</p>
+  <div class="card-body">
+    <h1 class="fw-light card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h1>
+    <hr/>
+    <p class="lead text-muted">{{ page_user.bio }}</p>
+    <hr/>
+    <p class="card-text">
+      <strong>
+        {% if page_user.website_url %}
+        <a href="{{ page_user.website_url }}">Website</a> &ThickSpace;
+        {% endif %}
+        {% if page_user.linkedin_url %}
+          <a href="{{ page_user.linkedin_url }}">LinkedIn</a> &ThickSpace;
+        {% endif %}
+        {% if page_user.twitter_url %}
+          <a href="{{ page_user.twitter_url }}">Twitter</a> &ThickSpace;
+        {% endif %}
+        {% if page_user.facebook_url %}
+          <a href="{{ page_user.facebook_url }}">Facebook</a> &ThickSpace;
+        {% endif %}
+        {% if page_user.instagram_url %}
+          <a href="{{ page_user.instagram_url }}">Instagram</a> &ThickSpace;
+        {% endif %} 
+      </strong>
+    </p>
+  </div>
+</div>
+
+<h2 class="fw-light mt-2">Blogs From {{ page_user.user.first_name }} {{ page_user.user.last_name }}</h2>
 <hr/>
-<p class="lead text-muted">{{ page_user.bio }}</p>
+
+<div class="container">
+  {% for post in user_posts %}
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body" style="background:lightblue;">
+        <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}"><strong>{{ post.title }}</strong></a></h5>
+        <small class="text-muted">Category: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></small>
+        <p class="card-text">{{ post.snippet }}</p>
+        <small class="card-text"><strong class="text-muted">Author: </strong>{{ post.author.first_name }} {{ post.author.last_name }}</small>
+        <div class="d-flex justify-content-between align-items-center">
+          {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}    
+          <div class="btn-group mt-1">
+            <br/>
+            <a href="{% url 'update-post' post.pk %}"><button type="button" class="btn btn-sm btn-primary">Edit</button></a>&ThickSpace;
+            <a href="{% url 'delete-post' post.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+          </div>
+            {% endif %}
+          {% endif %}                
+          <small>{{ post.post_date }}</small>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <br/>
+  {% endfor %}
+</div>
+
 {% endblock %}

@@ -7,7 +7,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm, ProfilePageForm, EditProfilePageForm
-from blog.models import Profile
+from blog.models import Profile, Post
 
 # Function based views
 def password_changed(request):
@@ -28,7 +28,6 @@ class EditProfilePageView(generic.UpdateView):
     model = Profile
     form_class = EditProfilePageForm
     template_name = 'registration/edit_profile_page.html'
-    # fields = ['bio', 'profile_pic', 'website_url', 'linkedin_url', 'twitter_url','facebook_url', 'instagram_url']
     success_url = reverse_lazy('home')
 
 class ShowProfilePageView(DetailView):
@@ -39,6 +38,7 @@ class ShowProfilePageView(DetailView):
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
         context["page_user"] = page_user
+        context["user_posts"] = Post.objects.filter(author = page_user.user)
         return context 
 
 class UserRegisterView(generic.CreateView):
