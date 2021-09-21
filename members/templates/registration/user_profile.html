@@ -8,9 +8,9 @@ SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
 
 <div class="col card mb-3 mt-5 shadow-sm">
   {% if page_user.profile_pic %}
-      <img src="{{ page_user.profile_pic.url }}" class="card-img-top mt-2 bg-light" style=" border: 5px double teal;border-radius:50%; width:11%;margin-left:21px" alt="Profile Pic">
+      <img src="{{ page_user.profile_pic.url }}" class="card-img-top mt-4 bg-light" style=" border: 5px double teal;border-radius:50%; width:21%;margin-left:21px" alt="Profile Pic">
     {% else %}
-      <img src="{% static 'profile_pic.png' %}" class="card-img-top mt-2 bg-light" style=" border: 5px double teal;border-radius:50%; width:11%;margin-left:21px" alt="Profile Pic">
+      <img src="{% static 'profile_pic.png' %}" class="card-img-top mt-4 bg-light" style=" border: 5px double teal;border-radius:50%; width:21%;margin-left:21px" alt="Profile Pic">
   {% endif %}
   <div class="card-body">
     <h1 class="fw-light card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h1>
@@ -50,7 +50,7 @@ SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
         <h5 class="card-text" style="text-align: center;"><a href="{% url 'article-view' post.pk %}"><strong>{{ post.title }}</strong></a></h5>
         <small class="text-muted">Category: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></small>
         <p class="card-text">{{ post.snippet }}</p>
-        <small class="card-text"><strong class="text-muted">Author: </strong>{{ post.author.first_name }} {{ post.author.last_name }}</small>
+        <small class="card-text text-muted">Published on: {{ post.post_date }}</small>
         <div class="d-flex justify-content-between align-items-center">
           {% if user.is_authenticated %}
             {% if user.id == post.author.id %}    
@@ -60,8 +60,7 @@ SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
             <a href="{% url 'delete-post' post.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
           </div>
             {% endif %}
-          {% endif %}                
-          <small>{{ post.post_date }}</small>
+          {% endif %}
         </div>
       </div>
     </div>
