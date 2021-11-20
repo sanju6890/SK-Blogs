@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     path('register/',UserRegisterView.as_view(), name="register"),
+    path('sign-in', views.signin, name='signin'),
     path('edit-profile/',UserEditView.as_view(), name="edit-profile"),
     # path('password/',auth_views.PasswordChangeView.as_view(template_name='registration/change_password.html')),    
     path('password/',ChangePasswordView.as_view(template_name='registration/change_password.html'), name="change-password"),

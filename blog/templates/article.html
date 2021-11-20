@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+
     <h1 class="fw-light mt-5">{{ post.title }}</h1>
     <small>Author: 
       {% if post.author.profile.id %}
@@ -48,4 +50,8 @@
     {% endif %}
     <hr/>
     <a href="{% url 'add-comment' post.pk %}"><button class="btn btn-primary btn-sm">Add Comment</button></a>
-{% endblock %}
+<br/>
+<br/>
+<br/>
+</div>
+    {% endblock %}

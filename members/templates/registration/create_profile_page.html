@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+
 {% if user.is_authenticated %}
     <h1 class="fw-light mt-5 text-center">Create Your Profile Page Here!!</h1>
     <hr/>
@@ -19,5 +21,6 @@
     <hr/>
     <h5>You're not logged-in to create a profile page!</h5>
 {% endif %}
-
+<br/>
+</div>
 {% endblock %}

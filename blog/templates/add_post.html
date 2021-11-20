@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+
 {% if user.is_authenticated %}
     <h1 class="fw-light mt-5 text-center">Add New Blog Post Here!!</h1>
     <hr/>
@@ -24,5 +26,6 @@
     <hr/>
     <h5>You're not allowed to add a new blog post!</h5>
 {% endif %}
-
+<br/>
+</div>
 {% endblock %}

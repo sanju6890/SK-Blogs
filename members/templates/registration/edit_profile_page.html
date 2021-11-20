@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+
 {% if user.is_authenticated %}
     {% if user.id == profile.user.id %}
         <h1 class="fw-light mt-5 text-center">Edit Profile Page!!</h1>
@@ -26,5 +28,6 @@
     <hr/>
     <h5>You're not logged-in to access this page!</h5>
 {% endif %}
-
+<br/>
+</div>
 {% endblock %}

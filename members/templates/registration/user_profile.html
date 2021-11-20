@@ -5,6 +5,7 @@
 SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
 {% endblock %}
 {% block content %}
+<div class="container">
 
 <div class="col card mb-3 mt-5 shadow-sm">
   {% if page_user.profile_pic %}
@@ -68,5 +69,5 @@ SK BLOGS: {{ page_user.user.first_name }} {{ page_user.user.last_name }}
   <br/>
   {% endfor %}
 </div>
-
+</div>
 {% endblock %}

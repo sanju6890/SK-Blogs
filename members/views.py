@@ -1,5 +1,5 @@
 
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls.base import reverse
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -8,6 +8,28 @@ from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm, ProfilePageForm, EditProfilePageForm
 from blog.models import Profile, Post
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+# Create your views here.
+def signin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        pass1 = request.POST['pass1']
+        
+        user = authenticate(request, username=username, password=pass1)
+        
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Logged In Sucessfully!!")
+            return redirect('home')
+        else:
+            messages.error(request, "Wrong Credentials!!")
+            return redirect('signin')
+    
+    return render(request, "registration/login.html")
 
 # Function based views
 def password_changed(request):

@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+
 {% if category_posts %}
 <h1 class="fw-light mt-5 text-center">{{ cats }} Blog Posts!!</h1>
 <hr/>
@@ -40,5 +42,7 @@
     <hr/>
     <h5>No blogs exist in {{ cats }} category!!</h5>
 {% endif %}
+
+</div>
 
 {% endblock %}

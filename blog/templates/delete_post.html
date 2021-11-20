@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
 
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
@@ -30,4 +31,5 @@
     <h5>You're not logged-in to delete any blog post!</h5>
 {% endif %}
 
+</div>
 {% endblock %}
