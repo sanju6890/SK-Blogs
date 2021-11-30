@@ -17,8 +17,8 @@ SK BLOGS: Login Page
     {% for message in messages %}
     <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-      <div>{{ message }}</div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div class="text-center">{{ message }}</div>
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
       </div>
     {% endfor %}
     <br/>
@@ -34,10 +34,13 @@ SK BLOGS: Login Page
         </div>
       <br/>
       <h6>Not a registered user? First <a href="{% url 'register' %}"><span class="badge bg-warning text-dark">Sign up</span></a></h6>
-      <button type="submit" class="w-25 btn btn-primary mt-2">Login</button>      
+      <div>
+        <button type="submit" class="w-25 btn btn-primary mt-2">Login</button>
+        <a href="#"><button class="w-25 btn btn-danger mt-2">Forgot Password</button></a>
+      </div>
+            
   </form>
   </div>
-  <a href="#"><button class="w-25 btn btn-danger mt-2">Forgot Password</button></a>
 </div>
 <br/>
 </div>
