@@ -47,9 +47,9 @@
         </button>
         <div class="nav justify-content-center collapse navbar-collapse" id="navbarSupportedContent">
         
-          <ul class="navbar-nav mr-auto" style="font-size: large; ">
+          <ul class="navbar-nav mr-auto" style="font-size: x-large; ">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <!-- Category Dropdown Code -->
             {% if cat_menu %}
@@ -68,6 +68,9 @@
                 <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
               </li>
             {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a>
+            </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add-post' %}">Add-Post</a>
