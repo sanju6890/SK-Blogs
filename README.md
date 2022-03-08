@@ -1,8 +1,7 @@
 
-# SK Blogs App
+![Logo](https://raw.githubusercontent.com/sanju6890/SK-Blogs/master/static/sk-blogs-icon.png)
 
 This is a web application that serves the technical blogs on fundamentals of Computer Science (OS, DBMS, CN, OOPs, etc) and other development stuff.
-![Logo](https://raw.githubusercontent.com/sanju6890/SK-Blogs/master/static/sk-blogs-icon.png)
 
 
 ## Features
