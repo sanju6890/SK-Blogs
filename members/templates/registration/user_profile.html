@@ -5,7 +5,7 @@
 {{ page_user.user.first_name }} {{ page_user.user.last_name }}
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container mt-5">
 <div class="col card mb-3 shadow-md">
   {% if page_user.profile_pic %}
       <img src="{{ page_user.profile_pic.url }}" class="card-img-top mt-4 bg-light" style=" border: 5px double teal;border-radius:50%; width:21%;margin-left:21px" alt="Profile Pic">

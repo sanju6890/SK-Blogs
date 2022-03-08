@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
 
-    <h1 class="fw-light">{{ post.title }}</h1>
+    <h1 class="fw-light mt-5"><strong>{{ post.title }}</strong></h1>
     <small>Author: 
       {% if post.author.profile.id %}
         <a href="{% url 'show-profile-page' post.author.profile.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a> - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><strong>{{post.category}}</strong></a>
