@@ -38,20 +38,19 @@
   <body class="d-flex flex-column h-100">
     {% if not user.is_authenticated %}
         <header class="p-2 bg-dark">
-            <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
                 </a> 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button>       
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large;">
-                <li class="nav-item"><a class="nav-link px-2 text-info" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <!-- Category Dropdown Code -->
                 {% if cat_menu %}
                 <li class="nav-item dropdown">
-                <a class="nav-link px-2 link-info dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                <a class="nav-link dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for item in cat_menu %}
                       <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
@@ -59,21 +58,18 @@
                   </ul>
                 </li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link px-2 text-info" href="{% url 'category-list' %}">Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'category-list' %}">Categories</a></li>
                 {% endif %}
-                <li class="nav-item"><a class="nav-link px-2 text-info" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
                 </ul>
 
-                <div class="text-end">
+                <div class="justify-content-">
                 <a href="{% url 'signin' %}"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
                 <a href="{% url 'register' %}"><button type="button" class="btn btn-warning">Sign-up</button></a>
                 </div>
-            </div>
-            </div>
         </header>
     {% else %}
         <header class="p-2 border-bottom bg-dark">
-        <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
@@ -82,11 +78,11 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large; ">
-              <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'home' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
               <!-- Category Dropdown Code -->
               {% if cat_menu %}
               <li class="nav-item">
-                <a class="nav-link px-2 link-info dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                <a class="nav-link dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   {% for item in cat_menu %}
                     <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
@@ -95,13 +91,13 @@
               </li>
               {% else %}
                 <li class="nav-item">
-                  <a class="nav-link px-2 link-info" href="{% url 'category-list' %}">Categories</a>
+                  <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
                 </li>
               {% endif %}
-              <li class="nav-item"><a class="nav-link px-2 link-info" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
               {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'add-post' %}">Add-Post</a></li>
-                <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'add-category' %}">Add-Category</a></li>                           
+                <li class="nav-item"><a class="nav-link" href="{% url 'add-post' %}">Add-Post</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'add-category' %}">Add-Category</a></li>                           
               {% endif %}
             </ul>
 
@@ -128,7 +124,6 @@
               </ul>
             </div>
           </div>
-        </div>
         </header>
     {% endif %}
 
