@@ -3,7 +3,5 @@
 /* Not required for template or sticky footer method. */
 
 main > .container {
-  position: absolute;
-  bottom: 0; 
   padding: 60px 15px 0;  
 }
