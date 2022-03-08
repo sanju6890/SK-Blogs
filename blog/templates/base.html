@@ -42,7 +42,10 @@
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
-                </a>        
+                </a> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>       
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large;">
                 <li class="nav-item"><a class="nav-link px-2 text-info" href="{% url 'home' %}">Home</a></li>
                 <!-- Category Dropdown Code -->
@@ -75,7 +78,9 @@
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
             </a>
-    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large; ">
               <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'home' %}">Home</a></li>
               <!-- Category Dropdown Code -->
