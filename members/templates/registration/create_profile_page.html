@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-    SK BLOGS: Create Profile Page
+    Create Profile
 {% endblock %}
 
 {% block content %}
 <div class="container">
 
 {% if user.is_authenticated %}
-    <h1 class="fw-light mt-5 text-center">Create Your Profile Page Here!!</h1>
+    <h1 class="fw-light mt-3 text-center">Create Your Profile Page Here!!</h1>
     <hr/>
     <div class="form-group">
         <form method="POST">
