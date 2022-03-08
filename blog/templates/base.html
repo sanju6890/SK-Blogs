@@ -1,17 +1,20 @@
+
 <!doctype html>
 <html lang="en" class="h-100">
 {% load static %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static 'sk-blogs-icon.png' %}">  
+
+    <!-- Title -->
     <title>
       SK Blogs: {% block title %} {% endblock %}
-    </title>
-
-    <link rel="icon" type="image/png" href="{% static 'sk-blogs-icon.png' %}">    
+    </title>      
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -28,75 +31,85 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
     <link href="{% static 'css/sticky-footer-navbar.css' %}" rel="stylesheet">
+
   </head>
   <body class="d-flex flex-column h-100">
-    
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">          
-        <a class="navbar-brand text-info" style="font-weight:900;" href="{% url 'home' %}">
-          <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="51" class="d-inline-block align-text-center">
-          SK BLOGS
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="nav justify-content-center collapse navbar-collapse" id="navbarSupportedContent">
-        
-          <ul class="navbar-nav mr-auto" style="font-size: x-large; ">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-            </li>
-            <!-- Category Dropdown Code -->
-            {% if cat_menu %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for item in cat_menu %}
-                  <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
-              </li>
-            {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a>
-            </li>
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add-post' %}">Add-Post</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add-category' %}">Add-Category</a>
-              </li>
-            </ul>           
-            {% endif %}
-        </div>
-                    
-        {% if not user.is_authenticated %}
-        <div class="nav justify-content-end">
-            <a class="nav-link" href="{% url 'register' %}"><button class="btn btn-outline-light">Sign-Up</button></a>
-            <a class="nav-link" href="{% url 'signin' %}"><button class="btn btn-outline-light">Log-In</button></a>
-        </div> 
-        {% endif %}
+    {% if not user.is_authenticated %}
+        <header class="p-2 bg-dark">
+            <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
+                </a>        
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large;">
+                <li class="nav-item"><a class="nav-link px-2 text-info" href="{% url 'home' %}">Home</a></li>
+                <!-- Category Dropdown Code -->
+                {% if cat_menu %}
+                <li class="nav-item dropdown">
+                <a class="nav-link px-2 link-info dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for item in cat_menu %}
+                      <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link px-2 text-info" href="{% url 'category-list' %}">Categories</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link px-2 text-info" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
+                </ul>
 
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto" style="font-size: large;">
-            <!-- User Profile Section Code -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="text-end">
+                <a href="{% url 'signin' %}"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+                <a href="{% url 'register' %}"><button type="button" class="btn btn-warning">Sign-up</button></a>
+                </div>
+            </div>
+            </div>
+        </header>
+    {% else %}
+        <header class="p-2 border-bottom bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'sk-blogs-icon.png' %}" alt="SK BLOGS's ICON" width="75" class="d-inline-block align-text-center">
+            </a>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: large; ">
+              <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'home' %}">Home</a></li>
+              <!-- Category Dropdown Code -->
+              {% if cat_menu %}
+              <li class="nav-item">
+                <a class="nav-link px-2 link-info dropdown-toggle" href="{% url 'category-list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for item in cat_menu %}
+                    <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link px-2 link-info" href="{% url 'category-list' %}">Categories</a>
+                </li>
+              {% endif %}
+              <li class="nav-item"><a class="nav-link px-2 link-info" href="https://github.com/sanju6890/SK-Blogs" target="_blank">GitHub</a></li>
+              {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'add-post' %}">Add-Post</a></li>
+                <li class="nav-item"><a class="nav-link px-2 link-info" href="{% url 'add-category' %}">Add-Category</a></li>                           
+              {% endif %}
+            </ul>
+
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-info text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if page_user.profile_pic %}
+                <img src="{{ page_user.profile_pic.url }}" alt="user profile" width="32" height="32" class="rounded-circle bg-warning">
+                {% else %}
+                <img src="{% static 'profile_pic.png' %}" alt="user profile" width="32" height="32" class="rounded-circle bg-warning">
+                {% endif %}
                 {{user.first_name}} {{user.last_name}}
               </a>
-              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu text-small">
                 <li><a class="dropdown-item" href="{% url 'edit-profile' %}">Edit-Settings</a></li>
                 {% if user.profile.id %}
                   <li><a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit-Profile</a></li>
@@ -106,30 +119,31 @@
                 {% endif %}
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Log-Out</a></li>
-              </ul>                
-            </li>              
-        </ul>
-        {% endif %}
+
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-  </nav>
-</header>
+        </header>
+    {% endif %}
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
-  {% block content %}
+{% block content %}
+  
+{% endblock content %}
 
-  {% endblock %}
 </main>
 
-<!-- Footer -->
-<footer class="footer mt-auto py-2 bg-dark" style="margin-bottom: 0%;">
-  <div class="container mt-2 text-center text-info" >
-    <p class="copyright text-info"><strong>Copyright © SK Blogs 2021</strong></p>
-  </div>
+<footer class="footer mt-auto py-2 bg-dark text-info border-top">
+    <div class="container mt-2">
+        <p class="copyright" style="text-align: center;"><strong>Copyright © SK Blogs 2021</strong></p>
+    </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    
-</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
 </html>
