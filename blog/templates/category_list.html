@@ -7,13 +7,13 @@
 {% block content %}
 <div class="container">
 
-<h1 class="fw-light mt-3 text-center">Find All Blog Categories Here!!</h1>
+<h1 class="fw-light text-center">Find All Blog Categories Here!!</h1>
 <hr/>
-<div class="album py-5">
+<div class="album py-3">
   <div class="container">
       {% for category in category_list %}
       <div class="col mt-2">
-        <div class="card shadow-sm">
+        <div class="card shadow-md">
           <div class="card-body" style="background:lightblue;">
             <h5 class="card-text text-center"><a href="{% url 'category' category|slugify %}">{{ category }}</a></h5>
           </div>
