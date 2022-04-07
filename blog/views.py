@@ -52,10 +52,8 @@ class ArticleView(DetailView):
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = stuff.total_likes()
         context["total_likes"] = total_likes
-        liked = False
-        if stuff.likes.filter(id=self.request.user.id).exists():
-            liked = True
-        context["liked"] = liked 
+        liked = bool(stuff.likes.filter(id=self.request.user.id).exists())
+        context["liked"] = liked
         return context
 
 class AddPostView(CreateView):

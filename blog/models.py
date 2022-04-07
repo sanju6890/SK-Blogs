@@ -26,7 +26,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name="blog_posts")
 
     def __str__(self):
-        return self.title + ' | ' + str(self.author)
+        return f'{self.title} | {str(self.author)}'
     
     def total_likes(self):
         return self.likes.count()
@@ -42,7 +42,7 @@ class Comment(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '%s - %s' % (self.post.title, self.name)
+        return f'{self.post.title} - {self.name}'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
